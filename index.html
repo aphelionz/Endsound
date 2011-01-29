@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Balls out!</title>
+  </head>
+  <body>
+    
+    <fieldset>
+      <legend>Socket Shit</legend>
+      
+      <button id="connect">Connect</button>
+      <button id="disconnect">Disconnect</button>
+      
+      <span>0 Users Connected</span> 
+    </fieldset>
+    
+    <fieldset>
+      <legend>Notes</legend>
+      <button id="a">A</button>
+      <button id="bb">Bb</button>
+      <button id="b">B</button>
+      <button id="c">C</button>
+      <button id="cs">C#</button>
+      <button id="d">D</button>
+      <button id="ds">D#</button>
+      <button id="e">E</button>
+      <button id="f">F</button>
+      <button id="fs">F#</button>
+      <button id="g">G</button>
+      <button id="gs">G#</button>
+      
+      <input type="radio" name="timbre">Square</input>
+      <input type="radio" name="timbre">Triangle</input>
+      <input type="radio" name="timbre">Sine</input>
+      
+      <input type="number" name="octave" value="0">Octave</input>
+    </fieldset>
+    
+    
+    
+    
+    
+    <script src="/json.js"></script> <!-- for ie -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script> 
+      var socket = new io.Socket("127.0.0.1:666"); 
+      socket.connect();
+      socket.on('connect', function(){ 
+        console.log("connect");
+      }); 
+      socket.on('message', function(){
+        console.log("message");
+      }) 
+      socket.on('disconnect', function(){
+        console.log("disconnect");
+      }) 
+    </script>
+    
+  </body>
+</html>
