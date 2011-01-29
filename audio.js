@@ -54,7 +54,6 @@ function requestSoundData(soundData) {
 	for (var i=0, size=soundData.length; i<size; i++) {
 		soundData[i] = Math.sin(k * currentSoundSample++); // sine wave
 		//soundData[i] = Math.sin(k * currentSoundSample++) > 0 ? 1 : -1; // square wave
-		//socket.send(soundData[i]);
 	}       
 }
 

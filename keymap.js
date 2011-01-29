@@ -26,6 +26,7 @@ function startNote(e) {
     if(true !== soundPlaying[note.freq]) {
       start(note.freq);
       soundPlaying[note.freq] = true;
+      socket.send({"start" : note.freq});
     }
   }
 }
@@ -34,6 +35,7 @@ function stopNote(e) {
   var note = keyMap[e.keyCode];
   if(true === soundPlaying[note.freq]) {
     stop();
-    soundPlaying[note.freq] = false;    
+    soundPlaying[note.freq] = false;
+      socket.send({"stop" : note.freq});
   }
 }
