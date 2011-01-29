@@ -5,7 +5,6 @@ var http = require('http'),
     //app = require('express').createServer(),
     
 server = http.createServer(function(req, res){
-  // your normal server code
   var path = url.parse(req.url).pathname;
   
   switch (path){
@@ -18,6 +17,16 @@ server = http.createServer(function(req, res){
         res.end();
       });
       break;
+    
+    case "/keymap.js":
+    case "/audio.js":
+      fs.readFile(__dirname + path, function(err, data){
+        if (err) return send404(res);
+        res.writeHead(200, {'Content-Type': 'text/javascript'})
+        res.write(data, 'utf8');
+        res.end();
+      });
+      break;
 
     default: send404(res);
   }
@@ -25,7 +34,7 @@ server = http.createServer(function(req, res){
 
 send404 = function(res){
   res.writeHead(404);
-  res.write('404');
+  res.write('Something horrible has happened. Please look away and never come back.');
   res.end();
 };
 
@@ -44,6 +53,7 @@ io.on('connection', function(client){
     buffer.push(msg);
     if (buffer.length > 15) buffer.shift();
     client.broadcast(msg);
+    console.log(msg);
   });
 
   client.on('disconnect', function(){
