@@ -96,8 +96,8 @@
 			
 	        var k = 2* Math.PI * frequency / sampleRate
 			for (var i=0, size=soundData.length; i<size; i++) {
-	          soundData[i] = Math.sin(k * currentSoundSample++); // sine wave
-				//soundData[i] = Math.sin(k * currentSoundSample++) > 0 ? 1 : -1;
+	          //soundData[i] = Math.sin(k * currentSoundSample++); // sine wave
+			  soundData[i] = Math.sin(k * currentSoundSample++) > 0 ? 1 : -1;
 	        }       
 	      }
 
