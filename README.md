@@ -5,7 +5,7 @@ anybody can join, create a room, and make music with anybody else on the interne
 
 So far, the primary technologies we are using are node.js, and socket.io.
 
-If you just want to mess around with it, the pu
+If you just want to mess around with it, the public URL is at ...
 
 If you want to contribute, read on.
 
