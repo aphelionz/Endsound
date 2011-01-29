@@ -14,23 +14,26 @@ var keyMap = { 81:  {note: "a", freq: 440.0},
     soundPlaying = {};
 
 $(document).ready(function() {
-  $(document).keydown(function(e) { 
-    var note = keyMap[e.keyCode];
-    
-    if("undefined" !== typeof note) {
-      console.log(note.freq, soundPlaying[note.freq]);
-      if(true !== soundPlaying[note.freq]) {
-        start();
-        soundPlaying[note.freq] = true;
-      }
-    }
-  });
-  
-  $(window).keyup(function(e) {
-    var note = keyMap[e.keyCode];
-    stop();
-    soundPlaying[note.freq] = false;
-  });
+  $(document).keydown(startNote);
+  $(window).keyup(stopNote);
   
   window.focus();
 });
+
+function startNote(e) {
+  var note = keyMap[e.keyCode];
+  if("undefined" !== typeof note) {
+    if(true !== soundPlaying[note.freq]) {
+      start(note.freq);
+      soundPlaying[note.freq] = true;
+    }
+  }
+}
+
+function stopNote(e) {
+  var note = keyMap[e.keyCode];
+  if(true === soundPlaying[note.freq]) {
+    stop();
+    soundPlaying[note.freq] = false;    
+  }
+}
