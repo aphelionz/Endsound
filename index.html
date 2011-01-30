@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Balls out!</title>
+    <title>Hollow</title>
   </head>
   <body>
     
@@ -40,7 +40,7 @@
 	<button onclick="stop()">stop</button>
 	<script src="http://127.0.0.1:666/socket.io/socket.io.js"></script>
 	<script type="text/javascript">
-		var socket = new io.Socket("192.168.1.109", {port: 666});
+		var socket = new io.Socket("127.0.0.1", {port: 666});
 		socket.connect();
 		socket.on('connect', function(){ 
 			console.log("connect");
