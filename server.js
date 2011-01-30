@@ -2,42 +2,51 @@ var http = require('http'),
     url = require("url"),
     fs = require('fs'),
     io = require('socket.io'),
-    //app = require('express').createServer(),
-    
-server = http.createServer(function(req, res){
-  var path = url.parse(req.url).pathname;
-  if(path === "/") path = "/index.html";
-  var mime = {}
-  
-  fs.readFile(__dirname + path, function(err, data){
-    if (err) return send404(res);
-    switch (getExtension(path)){
-      case 'html':  mime = {'Content-Type': 'text/html'};       break;
-      case "jpg":   mime = {'Content-Type': 'image/jpeg'};      break;
-      case "png":   mime = {'Content-Type': 'image/png'};       break;
-      case "gif":   mime = {'Content-Type': 'image/gif'};       break;
-      case "css":   mime = {'Content-Type': 'text/css'};        break;  
-      case "js":    mime = {'Content-Type': 'text/javascript'}; break;
-      default:      send404(res);                               break;
-    }
-    
-    res.writeHead(200, {'Content-Type': mime})
-    res.write(data, 'utf8');
-    res.end();
-  });
-}),
+    config,
 
 send404 = function(res){
   res.writeHead(404);
   res.write('Something horrible has happened. Please look away and never come back.');
   res.end();
+},
+
+getExtension = function(path) {
+  return (/[.]/.exec(path)) ? /[^.]+$/.exec(path)[0] : undefined;
 };
 
-server.listen(666);
+// Load Configuration settings
+fs.readFile(__dirname + "/config.json", function(err, data) {
+  if(err) { console.log("No configuration file, dawg?"); } else {
+    config = JSON.parse(data);
+  }  
+});
 
-// socket.io 
-var io = io.listen(server)
-  , buffer = [];
+var server = http.createServer(function(req, res){
+  var mime = {}
+  var path = url.parse(req.url).pathname;
+  if(path === "/") path = "/index.html";
+
+  fs.readFile(__dirname + path, function(err, data){
+    if (err) return send404(res);
+    switch (getExtension(path)){
+      case 'html':  mime = {'Content-Type': 'text/html'};         break;
+      case "jpg":   mime = {'Content-Type': 'image/jpeg'};        break;
+      case "png":   mime = {'Content-Type': 'image/png'};         break;
+      case "gif":   mime = {'Content-Type': 'image/gif'};         break;
+      case "css":   mime = {'Content-Type': 'text/css'};          break;  
+      case "js":    mime = {'Content-Type': 'text/javascript'};   break;
+      case "json":  mime = {"Content-Type": "application/json"};  break;
+      default:      send404(res);                                 break;
+    }
+    
+    res.writeHead(200, mime)
+    res.write(data, 'utf8');
+    res.end();
+  });
+}),
+
+io = io.listen(server),  
+buffer = [];
   
 io.on('connection', function(client){
   client.send({ buffer: buffer });
@@ -55,8 +64,6 @@ io.on('connection', function(client){
   });
 });
 
-console.log('Server running at http://127.0.0.1:666/');
+server.listen(666);
 
-function getExtension(path) {
-  return (/[.]/.exec(path)) ? /[^.]+$/.exec(path)[0] : undefined;
-}
+console.log('Server running at http://127.0.0.1:666/');
