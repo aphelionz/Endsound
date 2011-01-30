@@ -5,8 +5,9 @@
 <!--[if IE 8 ]>    <html class="no-js ie8"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
   <head>
-    <title>Balls out!</title>
-    
+    <title>Hollow</title>
+  </head>
+  <body>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="description" content="">
@@ -63,6 +64,12 @@
 	    <button id="noplay">I just want to listen.</button>
 	  </section>
 	 
+	  <!-- <div id="data"></div> -->
+  	<p>You can play on your keyboard using the Wicki button layout. You can press multiple keys and hold keys to sustain them. Further keys:<br/> + = octave up<br/> - = octave down<br/> space = toggle sustain pedal</p>
+  	<p>Add some <input type="checkbox" id="reverb"/><label for="reverb">Reverb</label> and/or <input type="checkbox" id="delay" /><label for="delay">Delay</label></p>
+  	<p>Latency control, smaller buffersize means lower latency. If the buffersize is too small the audio starts to stutter. If you experience a lot of stuttering make sure your computer is plugged in and try to close other tabs.<br/>
+  	Buffer size: <span id="bufferLabel"></span> <div class="slider" id="buffer"></div></p>
+
 	<!-- Javascript libraries -->
 	<script src="http://127.0.0.1:666/socket.io/socket.io.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
@@ -72,13 +79,14 @@
   <!-- Our scripts -->
   <script src="lib/interactions/interactions.js"></script>
 	<script src="lib/socket.js"></script>
+	<script src="lib/vendor/dsp.js"></script>
+  <script src="lib/vendor/keyboard.js"></script>
+	<script src="lib/vendor/karplusstrong.js"></script>
 	<script src="lib/audio.js"></script>
-	<script src="lib/keymap.js"></script>
 	
   <!--[if lt IE 7 ]>
     <script src="lib/vendor/dd_belatedpng.js"></script>
     <script>DD_belatedPNG.fix('img, .png_bg'); // Fix any <img> or .png_bg bg-images. Also, please read goo.gl/mZiyb </script>
   <![endif]-->
-  
   </body>
 </html>
