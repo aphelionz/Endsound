@@ -35,9 +35,11 @@
       
       <input type="number" name="octave" value="0">Octave</input>
     </fieldset>
-	<input type="text" size="4" id="freq" value="440"><label for="hz">Hz</label>
-	<button onclick="start()">play</button>
-	<button onclick="stop()">stop</button>
+	<!--><div id="data"></div>-->
+	<p>You can play on your keyboard using the Wicki button layout. You can press multiple keys and hold keys to sustain them. Further keys:<br/> + = octave up<br/> - = octave down<br/> space = toggle sustain pedal</p>
+	<p>Add some <input type="checkbox" id="reverb"/><label for="reverb">Reverb</label> and/or <input type="checkbox" id="delay" /><label for="delay">Delay</label></p>
+	<p>Latency control, smaller buffersize means lower latency. If the buffersize is too small the audio starts to stutter. If you experience a lot of stuttering make sure your computer is plugged in and try to close other tabs.<br/>
+	Buffer size: <span id="bufferLabel"></span> <div class="slider" id="buffer"></div></p>
 	<script src="http://127.0.0.1:666/socket.io/socket.io.js"></script>
 	<script type="text/javascript">
 		var socket = new io.Socket("127.0.0.1", {port: 666});
@@ -60,9 +62,11 @@
 			console.log("disconnect");
 		})
 	</script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
+	<script>!window.jQuery && document.write(unescape('%3Cscript src="lib/vendor/jquery-1.4.4.js"%3E%3C/script%3E'))</script>
+	<script src="lib/vendor/dsp.js"></script>
+	<script src="lib/vendor/keyboard.js"></script>
+	<script src="lib/vendor/karplusstrong.js"></script>
 	<script src="lib/audio.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
-    <script>!window.jQuery && document.write(unescape('%3Cscript src="lib/vendor/jquery-1.4.4.js"%3E%3C/script%3E'))</script>
-    <script src="lib/keymap.js"></script>
   </body>
 </html>
