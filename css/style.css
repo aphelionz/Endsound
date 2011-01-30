@@ -167,7 +167,7 @@ button {  width: auto; overflow: visible; }
  #options { position: absolute; top: 1em; right: 1em; color: white; }
  #options * { opacity: 0;}
  
- .modal { display: none; }
+ .modal, #debug { display: none; }
 
 
 
