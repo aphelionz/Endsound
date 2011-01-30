@@ -48,6 +48,7 @@ io.on('connection', function(client){
     buffer.push(msg);
     if (buffer.length > 15) buffer.shift();
     client.broadcast(msg);
+    console.log(msg);
   });
 
   client.on('disconnect', function(){
