@@ -4,7 +4,7 @@
 #avatars dd { display: block; float: left; 
               height: 40px; width: 40px; 
               padding: 0; 
-              opacity: .3;
+              opacity: .65;
               margin: 0 0 0 7px; }
               
 #avatars #u-1 dd { background: black url('../img/avatars.jpg') no-repeat -7px -7px; }
@@ -12,3 +12,4 @@
 #avatars #u-3 dd { background: black url('../img/avatars.jpg') no-repeat -7px -50px; }
 #avatars #u-4 dd { background: black url('../img/avatars.jpg') no-repeat -7px -95px; }
 #avatars #u-5 dd { background: black url('../img/avatars.jpg') no-repeat -95px -7px; }
+#avatars #u-6 dd { background: black url('../img/avatars.jpg') no-repeat -180px -7px; }
