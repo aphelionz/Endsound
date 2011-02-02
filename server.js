@@ -46,11 +46,14 @@ var server = http.createServer(function(req, res){
 }),
 
 io = io.listen(server),  
-buffer = [];
+buffer = [], sessions = [];
   
 io.on('connection', function(client){
-  client.send({ buffer: buffer });
-  client.broadcast({ announcement: client.sessionId + ' connected' });
+  var sessions = [];
+  sessions[client.sessionId] = client;
+  var broadcast = { open_session: client.sessionId, sessions: sessions};
+  client.send(broadcast);  // Only do this for localhost
+  client.broadcast(broadcast);
   
   client.on('message', function(message){
     var msg = { message: [client.sessionId, message] };
@@ -60,7 +63,8 @@ io.on('connection', function(client){
   });
 
   client.on('disconnect', function(){
-    client.broadcast({ announcement: client.sessionId + ' disconnected' });
+    delete sessions[client.sessionId];
+    client.broadcast({ close_session: client.sessionId });
   });
 });
 
