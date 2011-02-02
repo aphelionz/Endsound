@@ -162,20 +162,15 @@ button {  width: auto; overflow: visible; }
     Author:
  */
  
- /* body { background-color: black; 
-        font-family:"HelveticaNeue-Light","Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:200;color:#fff; } */
-        
-        body{
-          margin:0;
-          padding:20px;
-          font:12px/17px Arial, sans-serif;
-          background:#f9f9f9;
-        }
+ body { background-color: black; 
+        font-family:"HelveticaNeue-Light","Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:200;color:#fff; }
  #options { position: absolute; top: 1em; right: 1em; color: white; }
  #options * { opacity: 0;}
  
  .modal, #debug { display: none; }
 
+ #viewport { position: absolute; right: 1em; bottom: 1em; border: 2px solid #555; }
+ #download-firefox { position: absolute; top: 1em; left: 1em; }
 
 
 

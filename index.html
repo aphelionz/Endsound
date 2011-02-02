@@ -26,21 +26,36 @@
     <script src="lib/vendor/modernizr-1.6.min.js"></script>
   </head>
   <body lang="en">
+    <section class="description">
+      <p>
+        This project 
+      </p>
+    
+	  <p id="download-firefox">You must <a href="http://www.mozilla.com/en-US/firefox/beta/">download Firefox 4</a> to use this.</p>
 	  
 	  <section class="modal" id="modal-connect">
 	    <button id="play">I want to play!</button>
 	    <button id="noplay">I just want to listen.</button>
 	  </section>
 	 
-	  <canvas id="viewport" width="800" height="600"></canvas>
+	 <section id="debug">xxxx</section>
+	 
+	  <canvas id="viewport" width="150" height="100"></canvas>
 	    
-	  <!-- Javascript libraries -->
-	  <script src="http://127.0.0.1:666/socket.io/socket.io.js"></script> <!-- Always use cloud socket? -->
+	  <!-- load configuration settings and socket.io.js -->
+	  <script src="config.js"></script>
+	  <script>
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = "http://" + config["server"].host + ":" + config["server"].port + "/socket.io/socket.io.js";
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+	  <!-- Vendor libraries -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
 	  <script>!window.jQuery && document.write(unescape('%3Cscript src="lib/vendor/jquery-1.4.4.js"%3E%3C/script%3E'))</script>
     <script type="text/javascript" src="/lib/vendor/shadowbox-3.0.3/shadowbox.js"></script>
     <script type="text/javascript" src="/lib/vendor/arbor.js"></script>
-
     
     <!-- Our scripts -->
     <script src="lib/globals.js"></script>
@@ -53,8 +68,7 @@
 	  <script src="lib/audio.js"></script>
 	  
 	  <script>
-	    // Analytics
-      if(false) {
+	    if(document.location.host === "ec2-184-72-196-220.compute-1.amazonaws.com:666") {
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-21107634-1']);
         _gaq.push(['_trackPageview']);
