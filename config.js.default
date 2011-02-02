@@ -1,0 +1,4 @@
+var config = {
+  "debug": false,
+  "server": { host: "ec2-184-72-196-220.compute-1.amazonaws.com", port: "666"}
+}

@@ -31,4 +31,4 @@ publish
 build/buildinfo.properties
 build/config/buildinfo.properties
 
-config.json
+config.js
