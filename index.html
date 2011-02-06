@@ -24,11 +24,22 @@
     <link rel="stylesheet" href="/lib/vendor/shadowbox-3.0.3/shadowbox.css">
     
     <script src="lib/vendor/modernizr-1.6.min.js"></script>
+	<script>
+	var d=new Date();
+	var weekday=new Array(7);
+	weekday[0]="Sunday";
+	weekday[1]="Monday";
+	weekday[2]="Tuesday";
+	weekday[3]="Wednesday";
+	weekday[4]="Thursday";
+	weekday[5]="Friday";
+	weekday[6]="Saturday";
+	</script>
   </head>
   <body lang="en">
 	  <section id="description">
 	    <h1>Welcome</h1>
-	    
+	    <h2>It's <script>document.write(weekday[d.getDay()]);</script> and you're making sweet music together.</h2>
 	    <p>Use the keyboard to make sounds.</p>
 	    <p>All of the letters, and all of the numbers make sounds. Even some of the symbols make sounds. The + and - keys change the octave, and the space bar is sustain.</p>
 	    
