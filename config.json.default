@@ -1,0 +1,5 @@
+{
+  "debug": false,
+  "server": "127.0.0.1:666",
+  "analytics": false
+}

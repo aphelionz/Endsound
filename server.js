@@ -2,7 +2,7 @@ var http = require('http'),
     url = require("url"),
     fs = require('fs'),
     io = require('socket.io'),
-    //config,
+    config,
 
 send404 = function(res){
   res.writeHead(404);
@@ -15,11 +15,11 @@ getExtension = function(path) {
 };
 
 // Load Configuration settings
-//fs.readFile(__dirname + "/config.json", function(err, data) {
-//  if(err) { console.log("No configuration file, dawg?"); } else {
-//    config = JSON.parse(data);
-//  }  
-//});
+fs.readFile(__dirname + "/config.json", function(err, data) {
+  if(err) { console.log("No configuration file, dawg?"); } else {
+    config = JSON.parse(data);
+  }  
+});
 
 var server = http.createServer(function(req, res){
   var mime = {}
